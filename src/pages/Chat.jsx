@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { io } from "socket.io-client";
-import { AuthContext } from "../context/AuthProvider";
+import { AuthContext } from "@context/AuthProvider";
 import { useContext } from "react";
 import axios from "axios";
 
@@ -12,29 +12,23 @@ const Chat = () => {
 	const [mensajes, setMensajes] = useState([]);
 	const { auth } = useContext(AuthContext);
 
-	const recibirMensajes = (mensaje) =>
-		setMensajes((state) => [...state, mensaje]);
-
 	const obtenerHistorial = async () => {
 		try {
 			const response = await axios.get(
 				`${import.meta.env.VITE_BACKEND_URL}/chats`
 			);
-			console.log(response.data);
 			setMensajes(response.data);
-		} catch (error) {
-			console.log(error);
-		}
+		} catch (error) {}
 	};
 
 	useEffect(() => {
 		obtenerHistorial();
 
-		socket.on("recibir", recibirMensajes);
+		socket.on("recibir", (mensaje) =>
+			setMensajes((state) => [...state, mensaje])
+		);
 
-		return () => {
-			socket.off("recibir", recibirMensajes);
-		};
+		return () => socket.disconnect();
 	}, [socket]);
 
 	const handleMensajeChat = () => {
@@ -82,7 +76,7 @@ const Chat = () => {
 											? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
 											: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
 									}
-									alt="My profile"
+									alt="Veterinarian profile"
 									className="w-14 h-14 rounded-full order-2"
 								/>
 							</div>
@@ -104,7 +98,7 @@ const Chat = () => {
 											? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
 											: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
 									}
-									alt="My profile"
+									alt="Pacient profile"
 									className="w-14 h-14 rounded-full order-1 "
 								/>
 							</div>
@@ -119,7 +113,7 @@ const Chat = () => {
 						placeholder="Escribe tu mensaje!"
 						className="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-2 bg-gray-200 rounded-md py-3"
 						value={mensaje}
-						onChange={(e) => setMensaje(e.target.value)}
+						onChange={({ target }) => setMensaje(target.value)}
 					/>
 
 					<div className="absolute right-0 items-center inset-y-0 hidden sm:flex">

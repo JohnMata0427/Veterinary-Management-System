@@ -45,7 +45,7 @@ const Visualizar = () => {
 						},
 					}
 				);
-				console.log(respuesta.data);
+				
 				setPaciente(respuesta.data.paciente);
 				setTratamientos(respuesta.data.tratamientos);
 			} catch (error) {

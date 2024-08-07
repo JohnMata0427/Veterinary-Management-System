@@ -35,7 +35,7 @@ export const NuevoPassword = () => {
 			setTimeout(() => {
 				navigate("/login");
 			}, 5000);
-			console.log(respuesta);
+			
 		} catch (error) {
 			setAlerta({ respuesta: error.response.data.res, exito: false });
 		}
