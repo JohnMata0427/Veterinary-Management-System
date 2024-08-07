@@ -9,8 +9,11 @@ export const AuthProvider = ({ children }) => {
 
 	const perfil = async (token) => {
 		try {
+			const decode = JSON.parse(atob(token.split(".")[1]));
 			const response = await axios.get(
-				`${import.meta.env.VITE_BACKEND_URL}/perfil`,
+				decode.rol === "veterinario"
+					? `${import.meta.env.VITE_BACKEND_URL}/perfil`
+					: `${import.meta.env.VITE_BACKEND_URL}/paciente/perfil`,
 				{
 					headers: {
 						"Content-Type": "application/json",
@@ -20,24 +23,7 @@ export const AuthProvider = ({ children }) => {
 			);
 
 			setAuth(response.data);
-		} catch (error) {
-			try {
-				const response = await axios.get(
-					`${import.meta.env.VITE_BACKEND_URL}/paciente/perfil`,
-					{
-						headers: {
-							"Content-Type": "application/json",
-							Authorization: `Bearer ${token}`,
-						},
-					}
-				);
-
-				setAuth(response.data);
-			} catch (error) {
-				localStorage.removeItem("token");
-				setAuth({});
-			}
-		}
+		} catch (error) {}
 	};
 
 	const actualizarPerfil = async (datos) => {
