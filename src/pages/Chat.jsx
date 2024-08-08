@@ -41,6 +41,7 @@ const Chat = () => {
 					emisor: auth._id,
 					nombre: auth.nombre,
 					rol: auth.rol,
+					createdAt: new Date(),
 				},
 			]);
 			socket.emit("enviar", {
@@ -56,53 +57,67 @@ const Chat = () => {
 		<div className="flex flex-col justify-between min-h-[70vh]">
 			<div className="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
 				<div className="chat-message">
-					{mensajes.map(({ mensaje, emisor, nombre, rol }, index) =>
-						emisor === auth._id ? (
-							<div
-								key={index}
-								className="flex items-end justify-end my-2"
-							>
-								<div className="flex flex-col items-end">
-									<span className="text-xs mr-2.5">
-										{nombre}
-									</span>
-									<span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-gray-700 text-white text-xs max-w-xs mx-2">
-										{mensaje}
-									</span>
-								</div>
-								<img
-									src={
-										rol === "veterinario"
-											? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
-											: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
-									}
-									alt="Veterinarian profile"
-									className="w-14 h-14 rounded-full order-2"
-								/>
-							</div>
-						) : (
-							<div className="flex items-end" key={index}>
-								<div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
-									<div className="flex flex-col items-start">
-										<span className="text-xs ml-2.5">
+					{mensajes.map(
+						({ mensaje, emisor, nombre, rol, createdAt }, index) =>
+							emisor === auth._id ? (
+								<div
+									key={index}
+									className="flex items-end justify-end my-2"
+								>
+									<div className="flex flex-col items-end">
+										<span className="text-xs mr-2.5">
 											{nombre}
 										</span>
-										<span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-gray-300 text-gray-600">
+										<span className="px-4 py-2 rounded-lg inline-block rounded-br-none bg-gray-700 text-white text-xs max-w-xs mx-2">
 											{mensaje}
 										</span>
+										<span className="text-xs mr-2.5 mt-1 text-neutral-500">
+											{new Date(
+												createdAt
+											).toLocaleString()}
+										</span>
 									</div>
+									<img
+										src={
+											rol === "veterinario"
+												? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
+												: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
+										}
+										alt="Veterinarian profile"
+										className="w-14 h-14 rounded-full order-2"
+									/>
 								</div>
-								<img
-									src={
-										rol === "veterinario"
-											? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
-											: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
-									}
-									alt="Pacient profile"
-									className="w-14 h-14 rounded-full order-1 "
-								/>
-							</div>
-						)
+							) : (
+								<div
+									className="flex items-end my-2"
+									key={index}
+								>
+									<div className="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-2 items-start">
+										<div className="flex flex-col items-start">
+											<span className="text-xs ml-1">
+												{nombre}
+											</span>
+											<span className="px-4 py-2 rounded-lg inline-block rounded-bl-none bg-blue-300 text-gray-600">
+												{mensaje}
+											</span>
+											<span className="text-xs ml-1 mt-1 text-neutral-500">
+												{new Date(
+													createdAt
+												).toLocaleString()}
+											</span>
+										</div>
+									</div>
+									<img
+										src={
+											rol === "veterinario"
+												? "https://cdn-icons-png.flaticon.com/512/2934/2934749.png"
+												: "https://cdn-icons-png.flaticon.com/512/2105/2105138.png"
+										}
+										alt="Pacient profile"
+										className="w-14 h-14 rounded-full order-1 "
+									/>
+								</div>
+							)
 					)}
 				</div>
 			</div>

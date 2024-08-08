@@ -69,7 +69,7 @@ const Dashboard = () => {
 						</Link>
 					</li>
 
-					{rol === "veterinario" && (
+					{(rol === "veterinario" || auth.rol === "veterinario") && (
 						<li className="text-center">
 							<Link
 								to="/dashboard/crear"
