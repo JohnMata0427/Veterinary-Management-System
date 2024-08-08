@@ -23,6 +23,9 @@ export const AuthProvider = ({ children }) => {
 			);
 
 			setAuth(response.data);
+
+			if (!response.data?._id) localStorage.removeItem("token");
+
 		} catch (error) {
 			localStorage.removeItem("token");
 		}

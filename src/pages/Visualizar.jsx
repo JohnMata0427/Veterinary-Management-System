@@ -47,9 +47,11 @@ const Visualizar = () => {
 					}
 				);
 
+				console.log(respuesta);
 				setPaciente(respuesta.data.paciente);
 				setTratamientos(respuesta.data.tratamientos);
 			} catch (error) {
+				console.log(error)
 				setAlerta({ respuesta: error.response.data.res, exito: false });
 			}
 		};
@@ -59,7 +61,7 @@ const Visualizar = () => {
 	return (
 		<div>
 			<h1 className="font-black text-4xl text-gray-500">Visualizar</h1>
-			{paciente._id ? (
+			{paciente?._id ? (
 				<>
 					<div className="m-5 flex justify-between">
 						<div>
