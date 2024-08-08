@@ -37,7 +37,7 @@ const Dashboard = () => {
 					<span className="bg-green-600 w-3 h-3 inline-block rounded-full"></span>{" "}
 					Bienvenido - {nombre}
 					<br />
-					Rol - {rol}
+					Rol - {rol || auth.rol}
 				</p>
 
 				<hr className="mt-5 border-slate-500" />
