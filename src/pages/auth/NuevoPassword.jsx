@@ -9,12 +9,13 @@ export const NuevoPassword = () => {
 	const { token } = useParams();
 
 	const navigate = useNavigate();
+	const [alerta, setAlerta] = useState({});
 
 	const [form, setForm] = useState({
 		password: "",
 		confirmPassword: "",
 	});
-	const [alerta, setAlerta] = useState({});
+	
 
 	const handleChange = (e) => {
 		setForm({
