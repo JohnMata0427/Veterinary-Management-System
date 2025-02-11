@@ -1,30 +1,3 @@
-# Plantilla para proyectos de react
+<h1 align="center">Sistema de Gestión de Veterinaria</h1>
 
-Landing Page
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-1.png)
-
-
-Login
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-2.png)
-
-Register
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-3.png)
-
-Forgot Password
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-4.png)
-
-Confirm email
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-6.png)
-
-Not Found
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-5.png)
-
-Dashboard
-------
-![Image text](https://raw.githubusercontent.com/Byrontosh/Plantilla-App-Demo/main/src/assets/fondos/captura-7.png)
+![image](https://github.com/user-attachments/assets/89eb0682-9588-4961-b32c-0a39948df6fe)
